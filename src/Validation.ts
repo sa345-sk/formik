@@ -5,12 +5,12 @@ type userInitialValues = {
     email: string,
     gender: string,
     phoneNumber: string,
-    dob: Date,
+    dob: Date | null,
     LGA: string,
     state: string,
     nin: string,
     maritalStatus: string,
-    courseId: string,
+    courseID: string,
     course: string
 }
 // const d = new Date()
@@ -25,7 +25,7 @@ export const userInitialValues: userInitialValues = {
     state: "",
     nin: "",
     maritalStatus: "",
-    courseId: "",
+    courseID: "",
     course: ""
 };
 export const adminValues = {
@@ -38,7 +38,7 @@ export const userValidation = yup.object().shape({
  lastName: yup.string().required('Last Name is Required'),
  email: yup.string().email().required('Email is Required'),
  phoneNumber: yup.number().required('Phone Number is Required').positive().integer(),
- dob: yup.string().required('Date Of Birth is Required'),
+ dob: yup.date().nullable().required('Date Of Birth is Required'),
  state: yup.string().required('State is Required'),
  course: yup.string().required('Course is Required'),
  nin: yup.number().required('NIN is Required').positive().integer(),

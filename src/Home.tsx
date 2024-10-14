@@ -1,7 +1,7 @@
 import { Button, Modal, TextInput, Label, Datepicker, Select } from "flowbite-react";
 import { MdAdd } from 'react-icons/md'
 import { useState } from 'react'
-import { Formik, Form, ErrorMessage, Field } from 'formik'
+import { Formik, Form, ErrorMessage } from 'formik'
 import { userInitialValues, userValidation } from './Validation'
 import Admin from './Admin'
 // import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -13,7 +13,7 @@ interface ICandidate {
     LGA: string
     gender: string
     phoneNumber: string
-    dob: string
+    dob: Date
     state: string
     nin: string
     maritalStatus: string
@@ -23,20 +23,6 @@ interface ICandidate {
 
 const Home = () => {
     const [toggleModal, setToggleModal] = useState(false)
-    // export const userInitialValues = {
-    //     firstName: "",
-    //     lastName: "",
-    //     LGA: "",
-    //     email: "",
-    //     gender: "",
-    //     phoneNumber: "",
-    //     dob: "",
-    //     state: "",
-    //     nin: "",
-    //     maritalStatus: "",
-    //     courseId: "",
-    //     course: ""
-    // };
     const createCandidate = async (vals: ICandidate) => {
         const post = {
             ...vals
@@ -57,6 +43,18 @@ const Home = () => {
 
         }
     }
+    /*
+    import { configureStore } from '@reduxjs/toolkit'
+
+export const store = configureStore({
+  reducer: {},
+})
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+    */
     return (
         <div>
             <div className="mt-5 ml-5 flex flex-row flex-wrap">
@@ -65,9 +63,9 @@ const Home = () => {
             {toggleModal && <Modal show={toggleModal} size="md" onClose={() => setToggleModal(false)} popup dismissible>
                 <Modal.Header />
                 <Modal.Body>
-                    <Formik initialValues={userInitialValues} validationSchema={userValidation} onSubmit={(values) => createCandidate(values, )
+                    <Formik initialValues={userInitialValues} validationSchema={userValidation} onSubmit={(values) => createCandidate(values)
                     }>
-                        {({ values, handleChange, handleBlur, handleSubmit }) => (
+                        {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
                             <Form onSubmit={handleSubmit}>
                                 <div className="flex flex-col flex-wrap p-3">
                                     {/* First Name */}
@@ -116,7 +114,7 @@ const Home = () => {
                                     {/* DOB */}
                                     <div>
                                         <Label className="block text-sm font-medium text-gray-700" htmlFor="dob">DOB *</Label>
-                                        <Datepicker className="rounded-md mt-1 mb-2" onBlur={handleBlur} onChange={handleChange} placeholder='First Name' value={values.dob} name="dob" id="dob" />
+                                        <Datepicker className="rounded-md mt-1 mb-2" value={values.dob} onBlur={handleBlur} onChange={(dob: Date | null) => setFieldValue('dob', dob)} />
                                         <ErrorMessage name="email" component="div" className="text-red-600 text-sm mt-1" />
                                     </div>
                                     {/*Gender*/}
