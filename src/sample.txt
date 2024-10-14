@@ -1,0 +1,331 @@
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+// Initial values for the form
+const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    gender: "",
+    phoneNumber: "",
+    emergencyContact: "",
+    department: "",
+    level: "",
+    ApptType: "",
+    staffType: "",
+    bankAccountNumber: "",
+    bankName: "",
+    psn: "",
+    openFileNum: "",
+    secFileNum: "",
+    dob: "",
+    LGA: "",
+    cadre: "",
+    rank: "",
+    gradeLevel: "",
+    step: "",
+    bvn: "",
+    nin: "",
+    highestQualification: "",
+    employmentDate: "",
+    dateofFirstAppointment: "",
+    dateofcurrentappointment: "",
+    dateofpresentappointment: "",
+    dateOfRetirement: "",
+};
+
+// Validation schema for form fields
+const validationSchema = Yup.object({
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
+    email: Yup.string().email("Invalid email format").required("Email is required"),
+    password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+    gender: Yup.string().required("Gender is required"),
+    phoneNumber: Yup.string().required("Phone number is required"),
+    emergencyContact: Yup.string().required("Emergency contact is required"),
+    department: Yup.string().required("Department is required"),
+    level: Yup.string().required("Level is required"),
+    ApptType: Yup.string().required("Appointment Type is required"),
+    staffType: Yup.string().required("Staff Type is required"),
+    bankAccountNumber: Yup.string().required("Bank Account Number is required"),
+    bankName: Yup.string().required("Bank Name is required"),
+    psn: Yup.string().required("PSN is required"),
+    openFileNum: Yup.string().required("Open File Number is required"),
+    secFileNum: Yup.string().required("Sec File Number is required"),
+    dob: Yup.date().required("Date of Birth is required"),
+    LGA: Yup.string().required("LGA is required"),
+    cadre: Yup.string().required("Cadre is required"),
+    rank: Yup.string().required("Rank is required"),
+    gradeLevel: Yup.string().required("Grade Level is required"),
+    step: Yup.string().required("Step is required"),
+    bvn: Yup.string().required("BVN is required"),
+    nin: Yup.string().required("NIN is required"),
+    highestQualification: Yup.string().required("Highest Qualification is required"),
+    employmentDate: Yup.date().required("Employment Date is required"),
+    dateofFirstAppointment: Yup.date().required("Date of First Appointment is required"),
+    dateofcurrentappointment: Yup.date().required("Date of Current Appointment is required"),
+    dateofpresentappointment: Yup.date().required("Date of Present Appointment is required"),
+    dateOfRetirement: Yup.date().required("Date of Retirement is required"),
+});
+
+// Submit handler
+const onSubmit = (values) => {
+    console.log("Form data", values);
+    // API call to save user data
+};
+yarn add yup @redux/toolkit react-redux
+// User registration form component with two-column layout
+const UserRegistrationForm = () => (
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        {() => (
+            <Form className="space-y-4">
+                {/* Flexbox container to ensure two fields per row */}
+                <div className="grid grid-cols-2 gap-4">
+                    {/* First Name */}
+                    <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                        <Field type="text" id="firstName" name="firstName" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="firstName" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Last Name */}
+                    <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
+                        <Field type="text" id="lastName" name="lastName" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="lastName" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                        <Field type="email" id="email" name="email" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="email" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <Field type="password" id="password" name="password" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="password" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Gender */}
+                    <div>
+                        <label htmlFor="gender" className="block text-sm font-medium text-gray-700">Gender</label>
+                        <Field as="select" id="gender" name="gender" className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                            <option value="" label="Select gender" />
+                            <option value="Male" label="Male" />
+                            <option value="Female" label="Female" />
+                        </Field>
+                        <ErrorMessage name="gender" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div>
+                        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <Field type="text" id="phoneNumber" name="phoneNumber" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="phoneNumber" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Emergency Contact */}
+                    <div>
+                        <label htmlFor="emergencyContact" className="block text-sm font-medium text-gray-700">Emergency Contact</label>
+                        <Field type="text" id="emergencyContact" name="emergencyContact" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="emergencyContact" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+                    {/* Date of Birth */}
+                    <div>
+                        <label htmlFor="dob" className="block text-sm font-medium text-gray-700">Date of Birth</label>
+                        <Field type="date" id="dob" name="dob" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="dob" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* LGA  */}
+                    <div>
+                        <label htmlFor="LGA" className="block text-sm font-medium text-gray-700">LGA</label>
+                        <Field type="text" id="LGA" name="LGA" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="LGA" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+                    {/* Department */}
+                    <div>
+                        <label htmlFor="department" className="block text-sm font-medium text-gray-700">Department</label>
+                        <Field as="select" id="department" name="department" className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                            <option value="" label="Select department" />
+                            <option value="Business_Development" label="Business Development" />
+                            <option value="ICT" label="ICT" />
+                            <option value="Operations" label="Operations" />
+                            <option value="Admin" label="Admin" />
+                        </Field>
+                        <ErrorMessage name="department" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Level */}
+                    <div>
+                        <label htmlFor="level" className="block text-sm font-medium text-gray-700">Level</label>
+                        <Field as="select" id="level" name="level" className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                            <option value="" label="Select level" />
+                            <option value="Department_Head" label="Department Head" />
+                            <option value="staff" label="Staff" />
+                        </Field>
+                        <ErrorMessage name="level" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Appointment Type */}
+                    <div>
+                        <label htmlFor="ApptType" className="block text-sm font-medium text-gray-700">Appointment Type</label>
+                        <Field as="select" id="ApptType" name="ApptType" className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                            <option value="" label="Select appointment type" />
+                            <option value="Permanent" label="Permanent" />
+                            <option value="Casual" label="Casual" />
+                        </Field>
+                        <ErrorMessage name="ApptType" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Staff Type */}
+                    <div>
+                        <label htmlFor="staffType" className="block text-sm font-medium text-gray-700">Staff Type</label>
+                        <Field as="select" id="staffType" name="staffType" className="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                            <option value="" label="Select staff type" />
+                            <option value="Volunteer" label="Volunteer" />
+                            <option value="Intern" label="Intern" />
+                            <option value="Contract" label="Contract" />
+                            <option value="NYSC" label="NYSC" />
+                        </Field>
+                        <ErrorMessage name="staffType" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Bank Account Number */}
+                    <div>
+                        <label htmlFor="bankAccountNumber" className="block text-sm font-medium text-gray-700">Bank Account Number</label>
+                        <Field type="text" id="bankAccountNumber" name="bankAccountNumber" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="bankAccountNumber" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Bank Name */}
+                    <div>
+                        <label htmlFor="bankName" className="block text-sm font-medium text-gray-700">Bank Name</label>
+                        <Field type="text" id="bankName" name="bankName" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="bankName" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* PSN */}
+                    <div>
+                        <label htmlFor="psn" className="block text-sm font-medium text-gray-700">PSN</label>
+                        <Field type="text" id="psn" name="psn" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="psn" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Open File Number */}
+                    <div>
+                        <label htmlFor="openFileNum" className="block text-sm font-medium text-gray-700">Open File Number</label>
+                        <Field type="text" id="openFileNum" name="openFileNum" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="openFileNum" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Sec File Number */}
+                    <div>
+                        <label htmlFor="secFileNum" className="block text-sm font-medium text-gray-700">Sec File Number</label>
+                        <Field type="text" id="secFileNum" name="secFileNum" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="secFileNum" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Cadre */}
+                    <div>
+                        <label htmlFor="cadre" className="block text-sm font-medium text-gray-700">Cadre</label>
+                        <Field type="text" id="cadre" name="cadre" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="cadre" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Rank */}
+                    <div>
+                        <label htmlFor="rank" className="block text-sm font-medium text-gray-700">Rank</label>
+                        <Field type="text" id="rank" name="rank" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="rank" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Grade Level */}
+                    <div>
+                        <label htmlFor="gradeLevel" className="block text-sm font-medium text-gray-700">Grade Level</label>
+                        <Field type="text" id="gradeLevel" name="gradeLevel" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="gradeLevel" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Step */}
+                    <div>
+                        <label htmlFor="step" className="block text-sm font-medium text-gray-700">Step</label>
+                        <Field type="text" id="step" name="step" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="step" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* BVN */}
+                    <div>
+                        <label htmlFor="bvn" className="block text-sm font-medium text-gray-700">BVN</label>
+                        <Field type="text" id="bvn" name="bvn" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="bvn" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* NIN */}
+                    <div>
+                        <label htmlFor="nin" className="block text-sm font-medium text-gray-700">NIN</label>
+                        <Field type="text" id="nin" name="nin" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="nin" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Highest Qualification */}
+                    <div>
+                        <label htmlFor="highestQualification" className="block text-sm font-medium text-gray-700">Highest Qualification</label>
+                        <Field type="text" id="highestQualification" name="highestQualification" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="highestQualification" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Employment Date */}
+                    <div>
+                        <label htmlFor="employmentDate" className="block text-sm font-medium text-gray-700">Employment Date</label>
+                        <Field type="date" id="employmentDate" name="employmentDate" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="employmentDate" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Date of First Appointment */}
+                    <div>
+                        <label htmlFor="dateofFirstAppointment" className="block text-sm font-medium text-gray-700">Date of First Appointment</label>
+                        <Field type="date" id="dateofFirstAppointment" name="dateofFirstAppointment" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="dateofFirstAppointment" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Date of Current Appointment */}
+                    <div>
+                        <label htmlFor="dateofcurrentappointment" className="block text-sm font-medium text-gray-700">Date of Current Appointment</label>
+                        <Field type="date" id="dateofcurrentappointment" name="dateofcurrentappointment" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="dateofcurrentappointment" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Date of Present Appointment */}
+                    <div>
+                        <label htmlFor="dateofpresentappointment" className="block text-sm font-medium text-gray-700">Date of Present Appointment</label>
+                        <Field type="date" id="dateofpresentappointment" name="dateofpresentappointment" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="dateofpresentappointment" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+                    {/* Date of Retirement */}
+                    <div>
+                        <label htmlFor="dateOfRetirement" className="block text-sm font-medium text-gray-700">Date of Retirement</label>
+                        <Field type="date" id="dateOfRetirement" name="dateOfRetirement" className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <ErrorMessage name="dateOfRetirement" component="div" className="text-red-600 text-sm mt-1" />
+                    </div>
+
+
+                </div>
+
+                {/* Submit Button */}
+                <div>
+                    <button type="submit" className="w-2/5 py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">
+                        Submit
+                    </button>
+                </div>
+            </Form>
+        )}
+    </Formik>
+);
+
+export default UserRegistrationForm;
