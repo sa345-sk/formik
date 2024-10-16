@@ -12,7 +12,7 @@ export default {
         'ma': '0 auto'
       },
       width: {
-        'w-90': '99%'
+        'w-90': '95%'
       }
     },
   },

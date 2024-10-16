@@ -1,11 +1,11 @@
- import * as yup from "yup";
-type userInitialValues = {
+import * as yup from "yup";
+import { v4 as uuidv4 } from 'uuid';
+export type TuserInitialValues = {
     firstName: string,
     lastName: string,
     email: string,
     gender: string,
     phoneNumber: string,
-    dob: Date | null,
     LGA: string,
     state: string,
     nin: string,
@@ -14,18 +14,17 @@ type userInitialValues = {
     course: string
 }
 // const d = new Date()
-export const userInitialValues: userInitialValues = {
+export const userInitialValues: TuserInitialValues = {
     firstName: "",
     lastName: "",
     LGA: "",
     email: "",
     gender: "",
     phoneNumber: "",
-    dob: new Date(),
     state: "",
     nin: "",
     maritalStatus: "",
-    courseID: "",
+    courseID: uuidv4(),
     course: ""
 };
 export const adminValues = {
@@ -38,7 +37,6 @@ export const userValidation = yup.object().shape({
  lastName: yup.string().required('Last Name is Required'),
  email: yup.string().email().required('Email is Required'),
  phoneNumber: yup.number().required('Phone Number is Required').positive().integer(),
- dob: yup.date().nullable().required('Date Of Birth is Required'),
  state: yup.string().required('State is Required'),
  course: yup.string().required('Course is Required'),
  nin: yup.number().required('NIN is Required').positive().integer(),

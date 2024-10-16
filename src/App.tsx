@@ -1,39 +1,43 @@
 import './App.css'
 import { Navbar, Button, Label, Drawer, Alert, TextInput } from 'flowbite-react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Home'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { HiInformationCircle } from 'react-icons/hi2'
 import { Formik, Form, ErrorMessage } from 'formik'
 import { adminValues } from './Validation'
+import { useDispatch, useSelector } from 'react-redux'
+import { GETDATA } from './redux/States'
 const App = () => {
   const [showDrawer, setShowDrawer] = useState(false)
-  const getData = async () => {
-    try {
-      const response = await fetch('/api/v1', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      const data = await response.json()
-      console.log(data);
-      
-    } catch (error) {
-      console.log(error);
-      
+  const { data } = useSelector((state: { data: never }) => state.data)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await fetch('/api/v1', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        const data = await response.json()
+        console.log(data);
+        dispatch(GETDATA(data))
+      } catch (error) {
+        console.log(error);
+        
+      }
     }
-  }
-  getData()
+    getData()
+  }, [])
   return (  
     <div>
       <Router>
         <Navbar fluid rounded>
-            <Link to='/'>
             <Navbar.Brand>
                 <h1 className='self-center whitespace-nowrap text-xl font-semibold dark:text-white text-red-800'>SkillUp</h1>  
             </Navbar.Brand>
-            </Link>
           <div className='flex md:order-2'>
               <Button onClick={() => setShowDrawer(true)}>Login</Button>
           </div>
@@ -71,7 +75,7 @@ const App = () => {
         </Drawer>
         <section>
           <Routes>
-            <Route path='/' element={<Home/>} />
+            <Route path='/' element={<Home data={data} />} />
           </Routes>
         </section>
         </Router>
