@@ -48,7 +48,6 @@ const App = () => {
             <div className="flex flex-col h-fit m-ma mt-2 p-3" style={{width: '50%'}}>
               <div className="text-white font-bold text-2xl text-center">Login</div>
               <Formik initialValues={adminValues} onSubmit={(values) => console.log(values)
-              
               }>
                 {({values, handleChange, handleBlur, handleSubmit}) => (
                   <Form onSubmit={handleSubmit}>

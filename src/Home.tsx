@@ -66,7 +66,7 @@ const Home = (prop: { data: FormikHelpers<TuserInitialValues> }) => {
                                     {/* Phone Number */}
                                     <div>
                                         <Label className="block text-sm font-medium text-gray-700" htmlFor="phoneNumber">Phone Number *</Label>
-                                        <TextInput type="number" inputMode="numeric" className={`rounded-md mt-1 mb-2`} value={values.phoneNumber} onBlur={handleBlur} onChange={handleChange} name="phoneNumber" id="phoneNumber"/>
+                                        <TextInput type="number" inputMode="numeric" className={`rounded-md mt-1 mb-2`} value={values.phoneNumber} onBlur={handleBlur} onChange={handleChange} name="phoneNumber" id="phoneNumber" placeholder="Phone Number"/>
                                         <ErrorMessage name="phoneNumber" component="div" className="text-red-500 text-sm mt-1" />
                                     </div>
                                     {/*State*/}
@@ -131,7 +131,7 @@ const Home = (prop: { data: FormikHelpers<TuserInitialValues> }) => {
                     </Formik>
                 </Modal.Body>
             </Modal>}
-           <Button className="fixed left-3/4 top-3/4" onClick={() => setToggleModal(true)}><MdAdd/></Button>
+           <Button className="fixed left-3/4 top-3/4" onClick={() => setToggleModal(true)} style={{left: '90%', top: '80%'}}><MdAdd/></Button>
         </div>
     );
 }

@@ -13,7 +13,8 @@ export default {
       },
       width: {
         'w-90': '95%'
-      }
+      },
+      
     },
   },
   plugins: [],
